@@ -22,20 +22,31 @@ function App() {
     //duplicating the array twice and storing in suffleCards array
     const suffleCards = [...cardItems, ...cardItems]
       .sort(() => Math.random() - 0.5)
-      .map((cards) => {
-        return { ...cards, id: Math.random() };
+      .map((card) => {
+        return { ...card, id: Math.random() };
       });
 
     setCards(suffleCards);
     setTurns(0);
   };
 
-  console.log(cards, turns);
-
   return (
     <div className='App'>
       <h1>Magic Match</h1>
       <button onClick={suffleCards}>New Game</button>
+
+      <div className='card-grid'>
+        {cards.map((card) => {
+          return (
+            <div className='card' key={card.id}>
+              <div>
+                <img className='front' src={card.src} alt='card front' />
+                <img className='back' src='/img/cover.png' alt='card back' />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
